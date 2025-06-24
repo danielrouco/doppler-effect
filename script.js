@@ -8,7 +8,7 @@ const circleRadius = 20;
 
 let xPosition = 0;
 let waves = [];
-let intervalId = 1;
+let intervalId;
 let frame = 0;
 
 class Wave {
@@ -43,13 +43,13 @@ start.addEventListener("click", () => {
     xPosition = 0;
     waves = [];
     frame = 0;
-    
-    setInterval(() => {
+
+    intervalId = setInterval(() => {
         //Move focus
         clear();
         circle(xPosition, 20);
         ctx.fill();
-        
+
         //Create a new wave
         if(frame === 0 || waves[waves.length - 1].iteration + 10 === frame){
             waves.push(new Wave(xPosition, frame));
@@ -69,8 +69,8 @@ start.addEventListener("click", () => {
 stp.addEventListener("click", () => {
     stp.style.display = "none";
     start.style.display = "block";
-    clearInterval(intervalId++);
-    
+    clearInterval(intervalId)
+
 })
 
 
